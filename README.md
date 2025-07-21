@@ -3,6 +3,7 @@
 
 ### HamsterCMS Special Edition with WYMIWYG
 [this is a branch from](https://github.com/turboblack/HamsterCMS)
+### fully compatible with this version !!!
 
 
     No database required!
