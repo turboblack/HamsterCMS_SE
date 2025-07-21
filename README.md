@@ -2,6 +2,7 @@
 [HamsterCMS is the world's smallest and very simple multi-template flatfile content management system.](http://old.net.eu.org/)
 
 ### HamsterCMS Special Edition with WYMIWYG
+### (What You Mean Is What You Get)
 [this is a branch from](https://github.com/turboblack/HamsterCMS)
 ### fully compatible with this version !!!
 
