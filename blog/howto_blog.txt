@@ -1,0 +1,47 @@
+<font size="5">frequently asked questions :<br><br>
+
+     To use the HamsterCMS script, follow these steps:<br><br>
+
+     Create content files: Create text files with a .txt extension for each content page.
+For example, home.txt, interesting_page.txt, etc. Place relevant content in these files. By default, the script is configured so that when you open the site, the main.txt will open, if you want to change this, edit the script.<br><br>
+
+     Place all files on the server:<br><br>
+
+     Upload all the files (including the .txt files and index.php you created) to your web server.<br><br>
+
+     Open your site:<br><br>
+
+     Navigate to your site in a web browser, for example by entering http://yourdomain<br><br>
+
+     Content display:<br><br>
+
+     On content pages, when you click on a link from the navigation, the content from the corresponding .txt file will be displayed.<br><br>
+
+     Editing content:<br><br>
+
+     To edit the content of a page, open the corresponding .txt file and make changes. This script allows you to easily add and edit pages on your site using text files. Remember that this is open source and depending on your needs, you can make changes to the design and functionality of 
+HamsterCMS.<br><br>
+
+---------------------------------------------------------------<br><br>
+
+<center><b>Hamster for advanced users.</b></center><br><br>
+
+So, you decided to make your own template based on the hamster. What do you need to know?
+<br><br>
+It's quite simple!<br><br>
+Create your own HTML template, or download a ready-made one from the Internet, and then follow the three-point scenario:<br><br>
+
+The templates inside the archive (there are several of them) make it clear how exactly you can layout for HamsterCMS. <br><br>
+
+The simplest example is the Plain template in which we can see two important lines, namely <b>[[<code>NAVIGATION</code>]]</b> which is responsible for the navigation, and <b>[[<code>CONTENTS</code>]]</b> which is responsible for the content of your page. 
+<br><br>
+You can also create a footer.txt and write <b>[[<code>footer.txt</code>]]</b> in the template below, which will pull the contents of your footer from your text file, so another block will appear on the site. You can create a great variety of blocks. if you have a two-column template, you can create several submenus with news or widgets. this way you can easily make up any template downloaded from the Internet, or adapt one drawn by hand.
+<br><br>
+in this update there is an option to expand the blog so that the blog is displayed - on the desired page in any place you need, 
+<br><br>
+insert the structure <b>[[<code>BLOG_CONTENT</code>]]</b>
+<br><br>
+<center>blog pages are saved in the blog folder, and you can also assign each its own template</center>
+ 
+<br><br>
+All stages will likely be accompanied by editing styles to one degree or another (sometimes you can do without it) to customize the overall appearance and make edits. But in general, this is all you need to create your own template for Hamster CMS.</font><br><br>

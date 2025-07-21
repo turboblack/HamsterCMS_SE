@@ -1,0 +1,2 @@
+            &copy; 2023-2025 <font color="#800000">Hamster</font>CMS<br> site works on a <a rel="nofollow" target="_blank" href="http://old.net.eu.org/"><span style="background-color:#ffffff">rocket fuel</span></a>
+			<br><br>

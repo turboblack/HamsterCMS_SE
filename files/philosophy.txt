@@ -1,0 +1,11 @@
+<font size="5"><font color="#800000">The hamster is simple: it’s not the wrapper that matters, but the contents you wrap in it.<br><br>
+  
+     Hamster is minimalistic: the code does not contain unnecessary things.<br><br>
+
+     The hamster combines: templates in a table layout will work on very old browsers, and therefore are suitable for fans of retro, while they also open in new ones without breaking the structure, and a modern - block layout of templates with a newer design is suitable for those who like current technologies.<br><br>
+
+     The hamster is economical: the traffic that the hamster consumes is very small, which means that the pages will open instantly.<br><br>
+
+     Hamster protected: no admin - no hacking!<br><br>
+</font>
+</font><br>

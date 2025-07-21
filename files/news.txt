@@ -1,0 +1,14 @@
+<font color="#800000"><font size="6"><b>Thanks for stopping by.</b></font><br><br>
+<font size="5">            <font face="Courier New">not-WYSIWYG but <b>WYMIWYG</b> — manual HTML code editing<BR>
+            (What You Mean Is What You Get)<BR>
+            why? so that it would work in IE5 (Internet Explorer 5 and possibly under 4) and in MS DOS<BR>
+            code purity, no auto-generated garbage<BR>
+            this is an editor for a "hamster", maximally simple and clear<BR>
+            the interface is made with the expectation of compatibility with a very old IE<BR>
+            everything else is compatible with the previous "hamster" HamsterCMS<BR>
+            you will only need to replace one file (admin panel)<BR>
+            p.s.: for the release I am making a template for this version (on tables, so that it would work in browsers of that era, in the same canon)<BR>
+            </font></font><BR><BR></font>
+
+
+<img src="/2025_19_54_48.png">

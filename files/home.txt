@@ -1,0 +1,33 @@
+<font size="6">
+<font color="#800000"><b><font face="Courier New">HamsterCMS is the world's smallest and very simple content management system.</font></b></font></font>
+
+<br><br>
+
+<font size="5"><font color="#800000">
+
+<font face="Courier New">No database required! <br>
+
+    You only need one file to work! <br>
+
+    Works on PHP 8 without preinstalled frameworks <br>
+
+    Just copy the files to the server (or hosting). No settings needed. <br>
+
+    Perfect for a simple home page. <br>
+
+    Multi-page or blog function <br>
+
+    The hamster works very quickly. <br>
+
+    The hamster code is simple and clear! <br>
+
+    Open source and free! <br>
+
+    <b>Multi-template</b> <br>
+
+    Easy to adapt templates.<br></font>
+</font></font>
+<br><br>
+
+<font size="2">
+<font color="#000000"><center>hamster - slang, Internet (in Ua). same as home page</center></font></font><br><br>
