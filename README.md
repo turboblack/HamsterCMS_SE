@@ -85,39 +85,20 @@ blog pages are saved in the blog folder, and you can also assign each its own te
 ### Pay attention to the new templates for CMS:
 
 ### MS DOS template for HamsterCMS
-![this is what theme looks like](https://github.com/turboblack/HamsterCMS_author-s_DOS_template/blob/main/dos_screenshot.png)
-
 https://github.com/turboblack/HamsterCMS_author-s_DOS_template
 
 HamsterCMS is not only for old templates, the following examples are proof of this. 
 adapted templates for bootstrap, with which you can deploy a landing page
 
 ### HamsterCMS_Echoes_Bootstrap_theme
-![this is what theme looks like](https://github.com/turboblack/HamsterCMS_Echoes_Bootstrap_theme/blob/main/example.png)
-
 https://github.com/turboblack/HamsterCMS_Echoes_Bootstrap_theme
 
 ### HamsterCMS simple landing theme
-![this is what theme looks like](https://github.com/turboblack/HamsterCMS_simple_landing_theme/blob/main/screenshot.png)
-
 https://github.com/turboblack/HamsterCMS_simple_landing_theme
 
-# quark theme for HamsterCMS 
-![this is what theme looks like](https://github.com/turboblack/quark_theme_for_HamsterCMS/blob/main/quark.png)
-
-https://github.com/turboblack/quark_theme_for_HamsterCMS
-
-Quark theme for HamsterCMS adapted for DOS LINKS browser
-
-# HamsterCMS 0832 theme
-
-Walking in my shoes
-
-![this is what theme looks like](https://github.com/turboblack/HamsterCMS_0832_theme/blob/main/0832.png)
-
+### Walking in my shoes
 https://github.com/turboblack/HamsterCMS_0832_theme
 
-0832 theme for HamsterCMS adapted for old browsers    
 
 # also other available templates
 https://github.com/turboblack/HamsterCMS_ascii_yellow_theme
