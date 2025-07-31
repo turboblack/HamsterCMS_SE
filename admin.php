@@ -1,23 +1,33 @@
 <?php
 session_start();
 error_reporting(0);
-$valid_username = 'login';
-$valid_password = 'password';
 
-/* logout */
-if ($_POST['logout']) {
-  session_destroy();
-  header('Location: admin.php');
-  exit;
+$config = include 'config.php';
+$valid_username_hash = $config['username_hash'];
+$valid_password_hash = $config['password_hash'];
+
+$debuginfo = '';
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: admin.php');
+    exit;
 }
 
-/* put posted credentials to session variables */
-if ($_POST['username'] && $_POST['password']) {
-  $_SESSION['_username'] = $_POST['username'];
-  $_SESSION['_password'] = $_POST['password'];
+if (!empty($_POST['username']) && !empty($_POST['password'])) {
+    if (
+        password_verify($_POST['username'], $valid_username_hash) &&
+        password_verify($_POST['password'], $valid_password_hash)
+    ) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['_username'] = $_POST['username'];
+    } else {
+        $debuginfo = '<b style="color:#cc0000">Wrong login/password!</b>';
+    }
 }
 
-/* reading input */
+$loggedin = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
+
 $filename = $_POST['filename'] ?? '';
 $template = $_POST['template'] ?? '';
 $directory = $_POST['directory'] ?? './files/';
@@ -25,138 +35,131 @@ $action_delete = isset($_POST['action_delete']);
 $action_save = isset($_POST['action_save']);
 $action_edit = isset($_POST['action_edit']);
 $action_changedir = isset($_POST['action_changedir']);
-$debuginfo = '';
 $filelist = '';
 
-/* check for valid credentials or halt execution with an error message */
-$loggedin = (!empty($_SESSION['_username']) && $_SESSION['_username'] === $valid_username && !empty($_SESSION['_password']) && $_SESSION['_password'] === $valid_password);
-
-if (!$loggedin && isset($_POST['username'])) {
-  $debuginfo .= '<b style=color:#cc0000>Wrong login/password!</b> ';
-}
-
 if ($loggedin) {
-  if ($action_changedir) {
-    $filename = '';
-    $template = '';
-  }
-
-  if ($action_save) {
-    $newfilename = $_POST['newfilename'] ? trim(trim($_POST['newfilename']), '/') : '';
-    $filecontent = $_POST['editbox'] ?? '';
-    $filenameWithPath = $directory.$newfilename.'.txt';
-
-    if (empty($newfilename)) {
-      $debuginfo .= "<b style='color:#cc0000'>Error: filename is empty</b> ";
-    } elseif (!is_dir($directory)) {
-      $debuginfo .= "<b style='color:#cc0000'>Directory does not exist: $directory</b> ";
-    } elseif (!is_writable($directory)) {
-      $debuginfo .= "<b style='color:#cc0000'>Directory is not writable: $directory</b> ";
-    } else {
-      $h = fopen($filenameWithPath, 'w');
-      if (!$h) {
-        $debuginfo .= "<b style='color:#cc0000'>Cannot open file for writing: $filenameWithPath</b> ";
-      } elseif (fwrite($h, $filecontent)) {
-        $debuginfo .= 'File saved successfully. ';
-        if ('./files/' === $directory || './includes/' === $directory) {
-          $savedLink = "<a href='$newfilename' target='_blank' style='color: black;'>Open saved file</a>";
-        } elseif ('./blog/' === $directory) {
-          $savedLink = "<a href='$directory$newfilename' target='_blank' style='color: black;'>Open saved file</a>";
-        } else {
-          $savedLink = "<a href='$filenameWithPath' target='_blank' style='color: black;'>Open saved file</a>";
-        }
-        $debuginfo .= $savedLink;
-      } else {
-        $debuginfo .= "<b style='color:#cc0000'>An error occurred while writing content data</b> ";
-      }
-      if ($h) {
-        fclose($h);
-      }
-
-      // Template assertion
-      $templateFile = $directory.$newfilename.'.txt_';
-      if (!empty($template)) {
-        $h = fopen($templateFile, 'w');
-        if ($h && fwrite($h, $template)) {
-          $debuginfo .= ' Template saved.';
-        } else {
-          $debuginfo .= "<b style='color:#cc0000'>Error saving template</b>";
-        }
-        if ($h) {
-          fclose($h);
-        }
-      } elseif (file_exists($templateFile)) {
-        if (unlink($templateFile)) {
-          $debuginfo .= ' Template removed.';
-        } else {
-          $debuginfo .= "<b style='color:#cc0000'>Error removing template</b>";
-        }
-      }
-    }
-  }
-
-  if ($action_delete) {
-    if (!file_exists($filename.'.txt')) {
-      $debuginfo .= '<b style=color:#cc0000>Error: File does not exist</b>';
-    } else {
-      if (unlink($filename.'.txt') && (!file_exists($filename.'.txt_') || unlink($filename.'.txt_'))) {
-        $debuginfo .= "<b style=color:#ffff>File \"$filename\" deleted</b>";
+    if ($action_changedir) {
         $filename = '';
         $template = '';
-      } else {
-        $debuginfo .= '<b style=color:#cc0000>Error deleting file</b>';
-      }
     }
-  }
 
-  if ($dh = opendir($directory)) {
-    while (false !== ($file = readdir($dh))) {
-      if (str_ends_with($file, '.txt')) {
-        $current_file = "{$directory}{$file}";
-        if (is_file($current_file)) {
-          $file = preg_replace('/(.*)\.txt$/i', '$1', $file);
-          $filelist .= '<option'.($directory.$file == $filename ? ' selected' : '')." value=\"$directory$file\">$file</option>";
+    if ($action_save) {
+        $newfilename = $_POST['newfilename'] ? trim(trim($_POST['newfilename']), '/') : '';
+        $filecontent = $_POST['editbox'] ?? '';
+        $filenameWithPath = $directory . $newfilename . '.txt';
+
+        if (empty($newfilename)) {
+            $debuginfo .= "<b style='color:#cc0000'>Error: filename is empty</b> ";
+        } elseif (!is_dir($directory)) {
+            $debuginfo .= "<b style='color:#cc0000'>Directory does not exist: $directory</b> ";
+        } elseif (!is_writable($directory)) {
+            $debuginfo .= "<b style='color:#cc0000'>Directory is not writable: $directory</b> ";
+        } else {
+            $h = fopen($filenameWithPath, 'w');
+            if (!$h) {
+                $debuginfo .= "<b style='color:#cc0000'>Cannot open file for writing: $filenameWithPath</b> ";
+            } elseif (fwrite($h, $filecontent)) {
+                $debuginfo .= 'File saved successfully. ';
+                if ('./files/' === $directory || './includes/' === $directory) {
+                    $savedLink = "<a href='$newfilename' target='_blank' style='color: black;'>Open saved file</a>";
+                } elseif ('./blog/' === $directory) {
+                    $savedLink = "<a href='$directory$newfilename' target='_blank' style='color: black;'>Open saved file</a>";
+                } else {
+                    $savedLink = "<a href='$filenameWithPath' target='_blank' style='color: black;'>Open saved file</a>";
+                }
+                $debuginfo .= $savedLink;
+            } else {
+                $debuginfo .= "<b style='color:#cc0000'>An error occurred while writing content data</b> ";
+            }
+            if ($h) {
+                fclose($h);
+            }
+
+            // Template save
+            $templateFile = $directory . $newfilename . '.txt_';
+            if (!empty($template)) {
+                $h = fopen($templateFile, 'w');
+                if ($h && fwrite($h, $template)) {
+                    $debuginfo .= ' Template saved.';
+                } else {
+                    $debuginfo .= "<b style='color:#cc0000'>Error saving template</b>";
+                }
+                if ($h) {
+                    fclose($h);
+                }
+            } elseif (file_exists($templateFile)) {
+                if (unlink($templateFile)) {
+                    $debuginfo .= ' Template removed.';
+                } else {
+                    $debuginfo .= "<b style='color:#cc0000'>Error removing template</b>";
+                }
+            }
         }
-      }
     }
-  }
 
-  function get_templates_sorted($selected)
-  {
-    $templates = [];
-    if ($dh = opendir('./templates')) {
-      while (false !== ($dir = readdir($dh))) {
-        $subdir = './templates/'.$dir;
-        if ('.' != $dir && '..' != $dir && is_dir($subdir) && file_exists("$subdir/index.html")) {
-          $templates[] = $dir;
+    if ($action_delete) {
+        if (!file_exists($filename . '.txt')) {
+            $debuginfo .= '<b style=color:#cc0000>Error: File does not exist</b>';
+        } else {
+            if (unlink($filename . '.txt') && (!file_exists($filename . '.txt_') || unlink($filename . '.txt_'))) {
+                $debuginfo .= "<b style=color:#ffff>File \"$filename\" deleted</b>";
+                $filename = '';
+                $template = '';
+            } else {
+                $debuginfo .= '<b style=color:#cc0000>Error deleting file</b>';
+            }
         }
-      }
-      closedir($dh);
     }
 
-    sort($templates);
-    $return = '';
-    foreach ($templates as $template) {
-      $return .= '<option'.($template == $selected ? ' selected' : '').">$template</option>";
+    if ($dh = opendir($directory)) {
+        while (false !== ($file = readdir($dh))) {
+            if (str_ends_with($file, '.txt')) {
+                $current_file = "{$directory}{$file}";
+                if (is_file($current_file)) {
+                    $file = preg_replace('/(.*)\.txt$/i', '$1', $file);
+                    $filelist .= '<option' . ($directory . $file == $filename ? ' selected' : '') . " value=\"$directory$file\">$file</option>";
+                }
+            }
+        }
+        closedir($dh);
     }
 
-    return $return;
-  }
+    function get_templates_sorted($selected)
+    {
+        $templates = [];
+        if ($dh = opendir('./templates')) {
+            while (false !== ($dir = readdir($dh))) {
+                $subdir = './templates/' . $dir;
+                if ('.' != $dir && '..' != $dir && is_dir($subdir) && file_exists("$subdir/index.html")) {
+                    $templates[] = $dir;
+                }
+            }
+            closedir($dh);
+        }
+
+        sort($templates);
+        $return = '';
+        foreach ($templates as $template) {
+            $return .= '<option' . ($template == $selected ? ' selected' : '') . ">$template</option>";
+        }
+
+        return $return;
+    }
 }
 
 function list_subdirectories($path, $current)
 {
-  if (is_dir($path)) {
-    $dh = opendir($path);
-    while (false !== ($dir = readdir($dh))) {
-      if (is_dir($path.$dir) && '.' !== $dir && '..' !== $dir && './templates' !== ($path.$dir)) {
-        $subdir = $path.$dir.'/';
-        echo '<option'.($subdir == $current ? ' selected' : '').">$subdir</option>";
-        list_subdirectories($subdir, $current);
-      }
+    if (is_dir($path)) {
+        $dh = opendir($path);
+        while (false !== ($dir = readdir($dh))) {
+            if (is_dir($path . $dir) && '.' !== $dir && '..' !== $dir && './templates' !== ($path . $dir)) {
+                $subdir = $path . $dir . '/';
+                echo '<option' . ($subdir == $current ? ' selected' : '') . ">$subdir</option>";
+                list_subdirectories($subdir, $current);
+            }
+        }
+        closedir($dh);
     }
-    closedir($dh);
-  }
 }
 ?>
 
