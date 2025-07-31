@@ -24,12 +24,12 @@
 ![this is what cms looks like](http://elpis.ws/hamster_se.png)
 
 
-to install the script, just copy it to your virtual hosting with php 8 or newer
-open https://your_website/admin.php
-admin panel (**admin admin**)
-!!! Change your login and password
-To create a new login and password, use **generate_hash.php**
-Then write the generated login and password to a file **config.php**
+    to install the script, just copy it to your virtual hosting with php 8 or newer
+    open https://your_website/admin.php
+    admin panel (**admin admin**)
+    !!! Change your login and password
+    To create a new login and password, use **generate_hash.php**
+    Then write the generated login and password to a file **config.php**
 
 **The new script works under PHP 8. 
 multi-templates and working with templates from the admin panel.
