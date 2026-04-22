@@ -64,19 +64,11 @@ some tests: https://www.bttr-software.de/forum/board_entry.php?id=22015
 
 in general, for minimalists this is what you need
 
-    Now a little description of this particular template.
-as you can see, it is a little similar to the Windows 95 interface, 
-made in HTML4 without frameworks and add-ons that could work 
-with very old browsers from the 90s 
-(will work in IE5 since it has support for UTF8).
-
-For the script to work, you only need free hosting with support for PHP 8.*
-copy the files as is to the hosting, open, check - it works.
 
 go to the admin panel **admin.php**, enter your 
-login and password (login password), select open the file at the top, edit, save.
+// login and password admin by default
 ### Don’t forget to also change your login and password by 
-### editing the admin.php file, the name of which can also be changed, 
+### editing the config.php file
 ### this will not affect performance.
 
 # The admin panel (**login password** by default) can be renamed, this does not affect the functionality.
