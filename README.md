@@ -71,10 +71,10 @@ go to the admin panel **admin.php**, enter your
 ### editing the config.php file
 ### this will not affect performance.
 
-# The admin panel (**login password** by default) can be renamed, this does not affect the functionality.
+# The admin panel can be renamed, this does not affect the functionality.
 an admin panel is not necessarily needed on hosting; you can use any text editor, or if you don’t plan to edit pages anymore, remove this file from the folder.
 
-The templates inside the archive (there are several of them) make it clear how exactly you can layout for HamsterCMS. the simplest example is the **Plain** template in which we can see two important lines, namely [[NAVIGATION]] which is responsible for the navigation, and [[CONTENTS]] which is responsible for the content of your page. you can also create a footer.txt and write [[footer.txt]] in the template below, which will pull the contents of your footer from your text file, so another block will appear on the site. You can create a great variety of blocks. if you have a two-column template, you can create several submenus with news or widgets. this way you can easily make up any template downloaded from the Internet, or adapt one drawn by hand.
+The templates (there are several of them - links below) make it clear how exactly you can layout for HamsterCMS. the simplest example is the default template in which we can see two important lines, namely [[NAVIGATION]] which is responsible for the navigation, and [[CONTENTS]] which is responsible for the content of your page. you can also create a footer.txt and write [[footer.txt]] in the template below, which will pull the contents of your footer from your text file, so another block will appear on the site. You can create a great variety of blocks. if you have a two-column template, you can create several submenus with news or widgets. this way you can easily make up any template downloaded from the Internet, or adapt one drawn by hand.
 
 in this update there is an option to expand the blog so that the blog is displayed - on the desired page in any place you need, 
 insert the structure [[BLOG_CONTENT]]
