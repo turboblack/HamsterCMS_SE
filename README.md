@@ -79,7 +79,7 @@ insert the structure [[BLOG_CONTENT]]
 
 blog pages are saved in the blog folder, and you can also assign each its own template
 
-If you need multiple text blocks throughout the site in different places, use the same technique as with the footer, but a different file name.
+If you need multiple text blocks throughout the site in different places, for example for widgets, use the same technique as with the footer, but a different file name.
 
 ### Pay attention to the new templates for CMS:
 
